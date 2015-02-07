@@ -8,11 +8,11 @@ session_start();
 // If this session does not have the camerasAndDirectories set then it never ran the login page, redirect
 //
 
-//if ( ! isset($_SESSION["camerasAndDirectories"]) )
-//{
-//	header("Location: index.php");
-//	return;
-//}
+if ( ! isset($_SESSION["camerasAndDirectories"]) )
+{
+	//header("Location: index.php");
+	return;
+}
 
 if ( empty($_GET['camera']) )
 {

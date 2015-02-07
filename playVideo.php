@@ -47,8 +47,6 @@ foreach($camerasAndDirectories as $camera)
 
 
 
-//echo "<video class=\"video\" autoplay controls><source src=\"image.php?camera=PatioNorth&file=2015012017PatioNorth00006.mkv\"></video>";
-
 echo "<video class=\"video\" autoplay controls><source src=\"image.php?camera=".$InputCamera."&file=".$file."\"></video>";
 
 

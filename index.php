@@ -1,20 +1,14 @@
 <?php
 session_start();
 include 'authentication.php';
-//validateUser();
+validateUser();
 
 if(!session_id()) session_start();
 
 
 //
-// Open file /Users/paulbuchkowski/onvif/mailserver/cleanUpVideoFiles/cleanUpVideoFiles/resources/cameras
-// and list available cameras to click on
+// open file containing cameras
 //
-
-
-//$cameras = file( "/Users/paulbuchkowski/onvif/mailserver/cleanUpVideoFiles/cleanUpVideoFiles/resources/cameras");
-
-//print_r(get_defined_vars());
 
 $cameras = file($_SERVER['CAMERA_DIRECTORY']);
 
