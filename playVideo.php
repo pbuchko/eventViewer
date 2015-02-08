@@ -46,8 +46,13 @@ foreach($camerasAndDirectories as $camera)
 //
 
 
-
+echo "<table>";
+echo "<tr>";
+echo "<td>";
 echo "<video class=\"video\" autoplay controls><source src=\"image.php?camera=".$InputCamera."&file=".$file."\"></video>";
+echo "</td>.<td align=\"center\">".$_GET['events']."</td>";
+echo "</tr>";
+echo "</table>";
 
 
 exit();

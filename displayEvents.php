@@ -74,7 +74,7 @@ foreach ( $files1 as $file ) {
 		
 		echo "<tr>";
 		
-		echo "<td>" . "<a href=\"playVideo.php" . "?file=" . $file . "&camera=" . $_GET ['camera'] . "\">" . $file . "</a></td>";
+		echo "<td>" ."<input type=\"checkbox\" name=\"myTextEditBox\"  />". "<a href=\"playVideo.php" . "?file=" . $file . "&camera=".$_GET ['camera']."&events=".$eventsFromTitle."\">" . $file . "</a></td>";
 		echo "<td>" . $humanSize . "</td>";
 		echo "<td>" . $eventsFromTitle . "</td>";
 		
