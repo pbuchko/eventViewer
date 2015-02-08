@@ -73,4 +73,8 @@ $_SESSION['camerasAndDirectories'] = $camerasAndDirectories;
 
 echo "<br/>Session Id: ".session_id();
 
+
+//print_r( get_defined_vars () );
+
+
 ?>

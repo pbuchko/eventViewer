@@ -43,12 +43,14 @@ if ( empty($directory) )
 $files1 = scandir($directory);
 $relativeDirectory = str_replace(getcwd ( )."/", "", $directory)."/";
 
+echo "<table border=\"0\">";
 
 foreach($files1 as $file)
 {
 	//
 	// Check if the filename has the camera name
 	//
+	
 	if ( ( strpos(strtolower($file), strtolower($_GET['camera']) ) !== false ) &&
 			strpos(strtolower($file),".mkv") !== false )
 	{
@@ -56,13 +58,26 @@ foreach($files1 as $file)
 		$sz = 'BKMGTP';
 		$factor = floor((strlen($size) - 1) / 3);
 		$humanSize = sprintf("%.2f", $size / pow(1024, $factor)) . @$sz[$factor];
-				
-		echo "<a href=\"playVideo.php"."?file=".$file."&camera=".$_GET['camera']."\">".$file."  ".$humanSize."</a><br/><br>";
 		
+		//
+		// Pull the video title to display the event times
+		//
+		$mkvinfoCommand = "mkvinfo ".$directory."/".$file." | grep -i title";
+		
+		$eventsFromTitle = exec($mkvinfoCommand);
+		
+		echo "<tr>";
+		
+		echo "<td>"."<a href=\"playVideo.php"."?file=".$file."&camera=".$_GET['camera']."\">".$file."</a></td>";
+		echo "<td>".$humanSize."</td>";
+		echo "<td>".$eventsFromTitle."</td>";
+						
+		echo "</tr>";
 		
 	}
 		
 }
+echo "</table>";
 
 
 ?>
