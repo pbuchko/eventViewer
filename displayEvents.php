@@ -72,10 +72,27 @@ foreach ( $files1 as $file ) {
 			$eventsFromTitle = $eventsToFiles [$file];
 		}
 		
+		//
+		// Reverse the datetime of the segment from the filename
+		//
+		
+		$ymd = DateTime::createFromFormat('YmdH i:s', substr($file, 0, 10)." 00:00");
+		$fiveMinuteChunks = intval(substr($file, -6, 2));
+		$fiveMinuteChunks = $fiveMinuteChunks*5;
+		$ymd->add(new DateInterval("PT".$fiveMinuteChunks. "M"));
+		
+		$formatedDate = $ymd->format('M jS l H:i');
+		
+		
+		
+		
+		
 		echo "<tr>";
 		
-		echo "<td>" ."<input type=\"checkbox\" name=\"myTextEditBox\"  />". "<a href=\"playVideo.php" . "?file=" . $file . "&camera=".$_GET ['camera']."&events=".$eventsFromTitle."\">" . $file . "</a></td>";
+		//echo "<td>" ."<input type=\"checkbox\" name=\"myTextEditBox\"  />". "<a href=\"playVideo.php" . "?file=" . $file . "&camera=".$_GET ['camera']."&events=".$eventsFromTitle."\">" . $file . "</a></td>";
+		echo "<td>" ."<input type=\"checkbox\" name=\"myTextEditBox\"  />". "<a href=\"playVideo.php" . "?file=" . $file . "&camera=".$_GET ['camera']."&events=".$eventsFromTitle."\">" . $formatedDate . "</a></td>";
 		echo "<td>" . $humanSize . "</td>";
+		//echo "<td>".$formatedDate."</td>";
 		echo "<td>" . $eventsFromTitle . "</td>";
 		
 		echo "</tr>";
