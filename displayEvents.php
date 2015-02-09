@@ -45,6 +45,8 @@ if (empty ( $eventsToFiles )) {
 }
 
 echo "<table border=\"0\">";
+echo "  <col width=\"230\">";
+echo "  <col width=\"80\">";
 
 foreach ( $files1 as $file ) {
 	//
