@@ -26,13 +26,12 @@ $directory = getCameraDirectory($camerasAndDirectories, $_GET ['camera']);
 
 $relativeDirectory = str_replace ( getcwd () . "/", "", $directory ) . "/";
 
-//
-// Cache event mapping to file in the session
-//
+$eventsToFiles = array ();
 
-$eventsToFiles = $_SESSION ['eventsToFiles'];
-if (empty ( $eventsToFiles )) {
-	$eventsToFiles = array ();
+$filePath = getcwd () . DIRECTORY_SEPARATOR . "persistedEvents";
+if (file_exists ( $filePath )) {
+	$objData = file_get_contents ( $filePath );
+	$eventsToFiles = unserialize ( $objData );
 }
 
 echo "<table border=\"0\">";
@@ -54,16 +53,8 @@ foreach ( $files1 as $file ) {
 		// Pull the video title to display the event times
 		//
 		
-		if ( empty($eventsToFiles [$file]) ) {
-			$mkvinfoCommand = "mkvinfo " . $directory . "/" . $file . " | grep -i title";
-			
-			$eventsFromTitle = exec ( $mkvinfoCommand );
-			
-			$eventsToFiles [$file] = $eventsFromTitle;
-			
-		} else {
-			$eventsFromTitle = $eventsToFiles [$file];
-		}
+		
+		$eventsFromTitle = $eventsToFiles [$file];
 		
 		//
 		// Reverse the datetime of the segment from the filename

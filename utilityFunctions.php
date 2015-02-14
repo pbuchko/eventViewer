@@ -82,5 +82,4 @@ function getCameraDirectory($camerasAndDirectories, $selectedCamera)
 	return $directory;
 	
 	
-	
 } 
