@@ -1,5 +1,6 @@
 <?php
 session_start ();
+include 'utilityFunctions.php';
 
 //
 // If this session does not have the camerasAndDirectories set then it never ran the login page, redirect
@@ -18,21 +19,11 @@ if (empty ( $_GET ['camera'] )) {
 }
 
 $camerasAndDirectories = $_SESSION ['camerasAndDirectories'];
-$directory = null;
-foreach ( $camerasAndDirectories as $camera ) {
-	if ($camera [0] [0] == $_GET ['camera']) {
-		$directory = $camera [0] [1];
-	}
-}
 
-if (empty ( $directory )) {
-	echo "Error resolving directory for camera recordings.\n";
-	echo "<br/><br/><br/>";
-	echo "Please check configuration\n";
-	return;
-}
+$files1 = getFilesForCamera($camerasAndDirectories, $_GET ['camera']);
 
-$files1 = scandir ( $directory );
+$directory = getCameraDirectory($camerasAndDirectories, $_GET ['camera']);
+
 $relativeDirectory = str_replace ( getcwd () . "/", "", $directory ) . "/";
 
 //
